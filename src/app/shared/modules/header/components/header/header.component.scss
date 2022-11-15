@@ -1,0 +1,26 @@
+.navbar{
+  width: 100%;
+  height: 74px;
+  background-color: #202242;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .navbar-home, .navbar-logout, .navbar-currentUser{
+    color: rgb(12, 154, 241);
+    text-decoration: none;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .navbar-right{
+    display: flex;
+  }
+  .navbar-home{
+    margin-left: 25px;
+  }
+  .navbar-logout, .navbar-currentUser{
+    margin-right: 25px;
+  }
+}

@@ -1,0 +1,74 @@
+<app-header></app-header>
+
+
+<div class="board-container" *ngIf="data$ | async as data">
+
+  <div class="boards-top-bar-container">
+    <div class="boards-links">
+
+      <modal-form
+        class="board-edit-form"
+        [defaultText]="data.board.title"
+        [title]="data.board.title"
+        (handleSubmit)="updateBoardTitle($event)"
+      ></modal-form>
+
+      <div class="board-edit-buttons">
+
+        <modal-form
+        class="create-column-form"
+        defaultText="Add new column"
+        inputPlaceholder="Column name..."
+        (handleSubmit)="createColumn($event)"
+        ></modal-form>
+
+        <button type="submit" class="delete-board-btn" (click)="deleteBoard()">Delete board</button>
+
+
+      </div>
+
+    </div>
+    <div class="boards-filters-container">
+      <input type="text" class="boards-filters-button" [(ngModel)]="filterTask" placeholder="Filter"/>
+      <button type="submit" class="boards-filters-button">Sort By Dropdown</button>
+      <button type="submit" class="boards-filters-button short">ASC</button>
+      <button type="submit" class="boards-filters-button short">DESC</button>
+    </div>
+
+  </div>
+
+
+  <div class="columns-container">
+
+      <div class="columns">
+
+        <div class="column" *ngFor="let column of data.columns">
+
+          <div class="column-title">{{column.title}}</div>
+
+          <div class="column-tasks-container">
+
+              <modal-form
+              class="column-task-form"
+              defaultText="+"
+              inputPlaceholder="Task name..."
+              (handleSubmit)="createTask($event,column.id)"
+              ></modal-form>
+
+
+            <div class="column-task" *ngFor="let task of getTasks(column.id, data.tasks) | filterTask: filterTask">
+              {{task.title}}
+              <button class="open-task-btn" (click)="openTask(task.id)">Open</button>
+              <button class="delete-task-btn" (click)="deleteTask(column.id, task.id)">Delete</button>
+            </div>
+
+            <button class="delete-column-btn" (click)="deleteColumn(column.id)">Delete column</button>
+
+          </div>
+
+        </div>
+      </div>
+  </div>
+
+
+  <router-outlet></router-outlet>

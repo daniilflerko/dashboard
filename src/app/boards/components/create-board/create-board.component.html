@@ -1,0 +1,8 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+
+  <input appFocus type="text" formControlName="title" class="create-board-title" placeholder="Board name..."/>
+
+  <textarea formControlName="description" rows="5" cols="33" class="create-board-textarea" placeholder="Board description..."></textarea>
+  <button type="submit" class="create-board-btn">Submit</button>
+  <p class="create-board-error" *ngIf="title.errors?.minlength && title.touched ">Too short title length! Now {{title.value.length}}</p>
+</form>

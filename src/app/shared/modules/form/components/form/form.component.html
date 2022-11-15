@@ -1,0 +1,15 @@
+<div class="form-container" [ngClass]="{ 'form-container-editing': isEditing }" (click)="activeEditing()">
+
+  <div class="form-text" *ngIf="!isEditing">{{ defaultText }}</div>
+  <form [formGroup]="formBuilder" (ngSubmit)="onSubmit()" *ngIf="isEditing" class="form">
+
+    <input type="text" formControlName="title" class="form-input" [placeholder]="inputPlaceholder" *ngIf="inputType === 'input'">
+
+    <textarea rows="10" cols="10" *ngIf="inputType === 'textarea'" formControlName="title" class="form-input"></textarea>
+
+    <button *ngIf="hasButton" type="submit" disable="form.invalid" class="form-button">{{buttonText}}</button>
+  </form>
+
+
+</div>
+

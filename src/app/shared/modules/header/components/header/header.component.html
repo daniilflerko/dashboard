@@ -1,0 +1,11 @@
+<div class="navbar">
+  <div class="navbar-left">
+    <a routerLink="/boards" class="navbar-home">Home</a>
+  </div>
+
+  <div class="navbar-right">
+    <div class="navbar-currentUser"> {{ user }}</div>
+    <div class="navbar-logout" (click)="logout()">Logout</div>
+  </div>
+
+</div>

@@ -1,0 +1,88 @@
+<app-header></app-header>
+
+
+<!-- this should go in another shared component -->
+<div class="boards-container">
+
+  <div class="boards-top-bar-container">
+    <a routerLink="/" class="boards-link" routerLinkActive="boards-link-selected"> Dashboard </a>
+      <div class="boards-filters-container">
+        <input type="text" class="boards-filters-button"  [(ngModel)]="filter" placeholder="Filter"/>
+        <button type="submit" class="boards-filters-button">Sort By Dropdown</button>
+        <button type="submit" class="boards-filters-button short">ASC</button>
+        <button type="submit" class="boards-filters-button short">DESC</button>
+      </div>
+  </div>
+  <!-- <div class="user-boards-container"> -->
+    <!-- <div class="user-boards">
+      <div class="user-boards-header">
+        <div class="boards-header-name">My boards</div>
+      </div> -->
+      <modal *ngIf="modalService.isVisible$ | async">
+
+        <create-board></create-board>
+
+        <!-- <modal-form class="create-board-form" defaultText="Add new" [hasButton]="true" inputType="textarea" (handleSubmit)="createBoard($event, $event)"></modal-form> -->
+      </modal>
+
+
+
+
+      <div class="boards-tile-list">
+
+
+          <button class="add-tile-btn" (click)="modalService.open()">+<p class="add-tile-text">Add new</p></button>
+
+
+        <a [routerLink]="['/boards', board.id]" *ngFor="let board of boards | filter: filter" class="board-tile">
+          <div class="board-tile-details">{{board.title}}</div>
+          <div class="board-tile-details">{{board.createdAt | date}}</div>
+          <div class="board-tile-details">{{board.description}}</div>
+        </a>
+
+      </div>
+    <!-- </div> -->
+  <!-- </div> -->
+</div>
+
+<!--
+APP TOP BAR
+
+<div class="boards-page-container">
+  <div class="home-left-sidebar-container">
+    <a
+      routerLink="/boards"
+      class="boards-side-menu-option"
+      routerLinkActive="boards-side-menu-option-selected"
+      >Boards</a
+    >
+    <a
+      routerLink="/"
+      class="boards-side-menu-option"
+      routerLinkActive="boards-side-menu-option-selected"
+      [routerLinkActiveOptions]="{ exact: true }"
+      >Home</a
+    >
+  </div>
+  <div class="boards-section-container">
+    <div class="my-boards">
+      <div class="my-boards-section-header">
+        <div class="boards-page-header-name">My boards</div>
+      </div>
+      <div class="board-tile-list">
+        <modal-form
+          class="create-board-form"
+          defaultText="Create new board"
+          (handleSubmit)="createBoard($event)"
+        ></modal-form>
+        <a
+          [routerLink]="['/boards', board.id]"
+          *ngFor="let board of boards"
+          class="board-tile"
+        >
+          <div class="board-tile-details-name">{{ board.title }}</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div> -->

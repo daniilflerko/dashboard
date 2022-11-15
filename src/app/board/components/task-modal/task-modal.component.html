@@ -1,0 +1,54 @@
+<div class="task-modal-shadow"></div>
+
+
+<div class="task-modal-container" *ngIf="data$ | async as data">
+  <div class="task-modal-header">
+
+
+    <!-- <modal-form
+      class="task-modal-edit-title"
+      [defaultText]="data.task.title"
+      [title]="data.task.title"
+      (handleSubmit)="updateTaskName($event)"
+    ></modal-form> -->
+
+
+    <button class="leave-task-btn" (click)="goToBoard()">Close</button>
+  </div>
+
+  <div class="task-modal-body">
+    <div>
+
+      <form [formGroup]="columnForm"  class="column-select-container">
+        <select formControlName="columnId" class="column-select">
+          <option *ngFor="let column of data.columns">
+            {{column.title}}
+          </option>
+        </select>
+      </form>
+
+      <div class="task-modal-comments">
+        <div class="task-modal-comments-label"> Comments</div>
+<!--
+        <modal-form
+        class="task-modal-edit-comments"
+        [defaultText]="data.task.description || 'Add description'"
+        [title]="data.task.description || ''"
+        [hasButton]="true"
+        inputType="textarea"
+        buttonText="Submit"
+        (handleSubmit)="updateTaskDescription($event)"
+        ></modal-form> -->
+
+      </div>
+    </div>
+    <div class="task-modal-actions">
+      <div class="task-modal-actions-label">actions</div>
+      <div class="task-modal-actions-action">
+        Delete
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="task-modal-dropdown"></div>

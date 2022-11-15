@@ -1,0 +1,16 @@
+<div class="login-page">
+  <div class="form-container">
+    <div class="login-header">Welcome</div>
+    <div *ngIf="errorMessage" class="errors">{{ errorMessage }}</div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <input formControlName="email" type="email" placeholder="Email" class="login-input"/>
+      <input formControlName="username" placeholder="Username" class="login-input"/>
+      <input formControlName="password" type="password" placeholder="Password" class="login-input"/>
+      <button type="submit" class="login-btn">Create account</button>
+    </form>
+    <div class="links-container">
+      <a routerLink="/login" class="register-link">Sign In</a>
+      <a routerLink="/">Home</a>
+    </div>
+  </div>
+</div>
